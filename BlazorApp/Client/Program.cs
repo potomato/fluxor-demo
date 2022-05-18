@@ -10,6 +10,12 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 var currentAssembly = typeof(Program).Assembly;
-builder.Services.AddFluxor(options => options.ScanAssemblies(currentAssembly));
+builder.Services.AddFluxor(o =>
+    {
+        o.ScanAssemblies(currentAssembly);
+#if DEBUG
+        o.UseReduxDevTools();
+#endif
+    });
 
 await builder.Build().RunAsync();
