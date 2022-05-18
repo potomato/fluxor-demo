@@ -5,19 +5,20 @@ namespace BlazorApp.Client.Pages;
 public partial class TimerCounter : ComponentBase, IDisposable
 {
     private int currentCount = 0;
-    private bool disposedValue;
     private readonly static TimeSpan period = TimeSpan.FromSeconds(1);
-    private Timer timer;
+    private readonly Timer timer;
 
- 
-    public TimerCounter()
+     public TimerCounter()
     {
         timer = new Timer(OnTimer, null, Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
     }
 
     private void OnTimer(object state)
     {
-        IncrementCount();
+        InvokeAsync(() =>
+        {
+            IncrementCount();
+        });
     }
 
     private void IncrementCount()
@@ -38,6 +39,8 @@ public partial class TimerCounter : ComponentBase, IDisposable
 
 
     #region Disposable implementation
+    private bool disposedValue;
+
     protected virtual void Dispose(bool disposing)
     {
         if (!disposedValue)
