@@ -15,7 +15,7 @@ public partial class TimerCounter : ComponentBase, IDisposable
         timer = new Timer(OnTimer, null, Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
     }
 
-    private void OnTimer(object? state)
+    private void OnTimer(object state)
     {
         IncrementCount();
     }
