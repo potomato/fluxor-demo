@@ -12,7 +12,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Client\BlazorApp.Client.csproj" />
-    <ProjectReference Include="..\Shared\BlazorApp.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 
